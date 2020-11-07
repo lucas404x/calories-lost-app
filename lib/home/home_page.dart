@@ -1,4 +1,5 @@
-import 'package:calories_lost_app/shared/widgets/text_field.dart';
+import 'home_controller.dart';
+import '../shared/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -7,37 +8,60 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  HomeController _homeController = HomeController(GlobalKey<FormState>());
+  TextEditingController _weightController = TextEditingController();
+  TextEditingController _exerciseTimeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    var _size = MediaQuery.of(context).size;
 
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  top: size.height * .1, bottom: size.height * .1),
-              child: FlutterLogo(size: size.height * .2),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: TextFieldApp(
-                prefixIcon: Icon(Icons.fitness_center),
-                hintText: "Weight",
-                suffixText: "Kg",
+        child: Form(
+          autovalidateMode: AutovalidateMode.always,
+          key: _homeController.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    top: _size.height * .1, bottom: _size.height * .1),
+                child: FlutterLogo(size: _size.height * .2),
               ),
-            ),
-            Padding(
+              Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: TextFieldApp(
-                  hintText: "Exercise time",
-                  suffixText: "Min",
-                  prefixIcon: Icon(Icons.timer),
-                )),
-          ],
+                  controller: _weightController,
+                  validator: _homeController.validator,
+                  prefixIcon: Icon(Icons.fitness_center),
+                  hintText: "Weight",
+                  suffixText: "Kg",
+                ),
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
+                  child: TextFieldApp(
+                    controller: _exerciseTimeController,
+                    validator: _homeController.validator,
+                    hintText: "Exercise time",
+                    suffixText: "Min",
+                    prefixIcon: Icon(Icons.timer),
+                  )),
+              SizedBox(
+                height: _size.height * .01,
+              ),
+              ElevatedButton(
+                onPressed: () => _homeController.toResultPage(
+                    _weightController.text, _exerciseTimeController.text),
+                child: Text(
+                  'Submit',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
