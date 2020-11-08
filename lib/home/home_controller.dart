@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import '../calories/calories_page.dart';
 
 class HomeController {
   GlobalKey<FormState> _formKey;
@@ -6,11 +9,11 @@ class HomeController {
 
   HomeController(this._formKey);
 
-  toResultPage(String weight, String exerciseTime) {
+  toResultPage(BuildContext context, Map data) {
     if (!_formKey.currentState.validate()) return;
 
-    print(weight);
-    print(exerciseTime);
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => CaloriesPage(data)));
   }
 
   String validator(String input) {

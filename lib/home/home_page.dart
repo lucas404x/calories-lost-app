@@ -53,8 +53,10 @@ class _HomePageState extends State<HomePage> {
                 height: _size.height * .01,
               ),
               ElevatedButton(
-                onPressed: () => _homeController.toResultPage(
-                    _weightController.text, _exerciseTimeController.text),
+                onPressed: () => _homeController.toResultPage(context, {
+                  'weight': _weightController.text,
+                  'exerciseTime': _exerciseTimeController.text
+                }),
                 child: Text(
                   'Submit',
                   style: TextStyle(color: Colors.white),
