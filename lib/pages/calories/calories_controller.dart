@@ -1,5 +1,5 @@
-import '../data/local_storage_interface.dart';
-import '../models/met_value_model.dart';
+import '../../data/local_storage_interface.dart';
+import '../../models/met_value_model.dart';
 
 class CaloriesController {
   ILocalStorage _localStorage;

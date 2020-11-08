@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/met_value_model.dart';
-import '../services/get_local_json.dart';
+import '../../models/met_value_model.dart';
+import '../../services/get_local_json.dart';
 import 'calories_controller.dart';
 
 class CaloriesPage extends StatefulWidget {

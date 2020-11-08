@@ -1,6 +1,7 @@
-import 'home_controller.dart';
-import '../shared/widgets/text_field.dart';
 import 'package:flutter/material.dart';
+
+import '../../shared/widgets/text_field.dart';
+import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
   @override
