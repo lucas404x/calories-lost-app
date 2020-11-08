@@ -1,3 +1,5 @@
+import '../models/met_value_model.dart';
+
 abstract class ILocalStorage {
-  Future<Map> getAllData();
+  Future<List<MetValueModel>> getAllData();
 }
