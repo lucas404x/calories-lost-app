@@ -1,3 +1,4 @@
+import '../../models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,8 +13,8 @@ class HomeController {
   toResultPage(BuildContext context, Map data) {
     if (!_formKey.currentState.validate()) return;
 
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => CaloriesPage(data)));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => CaloriesPage(UserModel.fromJson(data))));
   }
 
   String validator(String input) {
